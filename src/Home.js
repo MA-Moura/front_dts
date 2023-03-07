@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import jwt from "jwt-decode";
 import logo from "./img/on_shake.png";
@@ -6,11 +6,11 @@ import "./Login.css";
 import "./App.css";
 import axios from "axios";
 import { setAuthToken } from "./App";
+import { queryByPlaceholderText } from "@testing-library/react";
 function loggedIn() {
-  // console.log("Boulgou");
+  console.log("Check login");
   var isExpired = false;
   const token = localStorage.getItem("token");
-  //   console.log(token);
   if (token === null) {
     return false;
   }
@@ -22,7 +22,7 @@ function loggedIn() {
   return !isExpired;
 }
 function HomePage() {
-  let { id } = useParams();
+  const { id } = useParams();
   const [msg, setMsg] = useState("Valider");
   const [isActive, setIsActive] = useState(false);
   const [pin, setPin] = useState("");
@@ -30,7 +30,6 @@ function HomePage() {
   const [qrvalidation, setQrValidation] = useState("");
 
   const handleClick = () => {
-    console.log(id);
     axios
       .post("http://localhost:8000/token", {
         pin: pin,
@@ -55,18 +54,22 @@ function HomePage() {
         setError("Mauvais PIN ! Merci de rescanner le QR");
       });
   };
-
+  useEffect(() => {
+    console.log("ééééééééééééééé");
+    console.log(id);
+    if (loggedIn()) {
+      axios.get("http://localhost:8000/qr/" + id).then(function (response) {
+        setQrValidation(response.data.response);
+      });
+    }
+  }, []);
   if (loggedIn()) {
-    axios.get("http://localhost:8000/qr/" + id).then(function (response) {
-      console.log(response.data.response);
-      setQrValidation(response.data.response);
-    });
-    if (qrvalidation == 1) {
-      return <div> Le code est bon </div>;
-    } else if (qrvalidation == 0) {
-      return <div> Le code n'est pas bon </div>;
+    if (qrvalidation == "1") {
+      return <div> Le code est bon- {qrvalidation} </div>;
+    } else if (qrvalidation == "0") {
+      return <div> Le code n'est pas bon- {qrvalidation} </div>;
     } else {
-      return <div> Une erreur est survenue</div>;
+      return <div> Loading... </div>;
     }
   } else {
     return (

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
 .App {
   text-align: center;
 }
@@ -16,8 +17,30 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #263CA7;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.validate-top-page {
+  background-color: #263CA7;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.validate-bottom-page{
+  background-color: #F6F6F6;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,21 +74,41 @@
   height: 100vh;
 }
 
-button {
+#btn {
   width: 270px;
-  height: 80px;
-  margin-top: 30px;
+  height: 60px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  padding: 0;
   border: none;
   outline: none;
-  background: #ffffff;
-  color: #000000;
-  font-size: 22px;
-  border-radius: 40px;
+  background: #36C2CF;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
   text-align: center;
   box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  text-align: center;  
+  vertical-align: middle;
+}
+
+.pin {
+  margin-top: 30px;
+  margin-bottom: 0px;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  color:#ffffff;
+  width: 270px;
+  height: 60px;
+  letter-spacing: 30px;
+}
+
+.pin::placeholder {
+  color:#ffffff;
 }
 
 .check-box {
@@ -115,9 +158,266 @@ svg path {
   transition-delay: 1s;
 }
 
-.pin {
-  margin-top: 30px;
+.ValidPage{
+  letter-spacing: 0.8px;
 }
-.logo {
+
+.qr_logo {
   margin-top: 30px;
+  height:120px;
+  color:#fff;
+  filter: invert(98%) sepia(7%) saturate(413%) hue-rotate(292deg) brightness(114%) contrast(100%);
+}
+
+.fleche-logo {
+  margin-top: 0px;
+  height:30px;
+  color:#fff;
+  filter: invert(14%) sepia(97%) saturate(3067%) hue-rotate(232deg) brightness(97%) contrast(97%);
+}
+
+.is-valid-logo{
+  margin-top: 30px;
+  height:80px;
+  color:#fff;
+  filter: invert(87%) sepia(12%) saturate(6026%) hue-rotate(144deg) brightness(89%) contrast(81%);
+}
+
+.is-not-valid-logo{
+  margin-top: 0px;
+  height:80px;
+  color:#fff;
+  filter: invert(49%) sepia(71%) saturate(5686%) hue-rotate(338deg) brightness(116%) contrast(104%);
+}
+
+.login_title{
+  font-size: 40px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.login_subtitle{
+  font-size: 16px;
+  margin-top: 0px;
+  margin-bottom: 80px;
+  font-weight: 400;
+}
+
+.offer-type{
+  background-color: #fff;
+  color: #000000;
+  display: flex;
+  text-align: left;
+  justify-content: center;
+  border-radius: 3px;
+
+}
+
+.offer-type-left{
+  margin-right: 15px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.offer-type-right{
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.has-paid{
+  background-color: #263CA7;
+  color: #000000;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 3px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.has-paid-title{
+  color: #ffffff;
+  font-weight: 700;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.has-paid-buttons{
+  color: #000000;
+  height: 40px;
+  display: flex;
+  text-align: left;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+}
+
+.has-paid-yes{
+  width: 40vw;
+  margin-right: 5px;
+  margin-left: 10px;
+  border-radius: 3px;
+  border-color: #fff;
+  color: #263CA7;
+  background-color: #ffffff;
+  border-style: none;
+}
+.has-paid-no{
+  width: 40vw;
+  margin-left: 5px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border-color: #fff;
+  color: #ffffff;
+  background-color: #263CA7;
+  box-shadow: none;
+  border : solid 1px white;
+}
+
+.refus-type{
+  background-color: #fff;
+  color: #000000;
+  height:100px;
+  width:calc(100% - 50px);
+  display:flex;
+  text-align: center;
+  border-radius: 3px;
+  padding: 8px;
+}
+
+.refus-title{
+  color: #414D5B;
+  margin:0;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+}
+
+.promotion-explain-title{
+  font-family: 'Nunito Sans', sans-serif;
+  color: #7F8183;
+  margin:0;
+  font-size:25px;
+  font-weight: 700;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.promotion-explain-title2{
+  font-family: 'Nunito Sans', sans-serif;
+  color: #414D5B;
+  margin:0;
+  font-weight: 700;
+}
+
+.promotion-explain-sub{
+  margin:0;
+  font-size:12px;
+  font-weight: 400;
+  color:#7F8183;
+}
+
+.promotion-circle{
+  background-color: #36C2CF;
+  height: 50px;
+  width: 50px;
+  padding: 15px;
+  border-radius: 100%;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 700;
+}
+
+.information-svg{
+  margin: 0px;
+  margin-left:10px;
+  margin-right:15px;
+  height:40px;
+  filter: invert(27%) sepia(3%) saturate(3057%) hue-rotate(173deg) brightness(97%) contrast(86%);
+
+
+}
+
+.explain-refus{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+
+}
+
+.refused_title{
+  margin: 0px;
+  font-size:55px;
+}
+
+.refused_subtitle{
+  margin-bottom:0px;
+  font-size:20px;
+}
+
+.validate_title{
+  margin: 0px;
+  font-size:55px;
+}
+
+.validate_subtitle{
+  margin-bottom:0px;
+  font-size:20px;
+}
+
+.motif_title{
+  display: flex;
+  margin-bottom: 0;
+  color:#ffffff;
+  margin-bottom:10px;
+  font-weight: 400;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.refus{
+  color: #000000;
+  margin: 25px;
+  height:120px;
+  width:calc(100% - 50px);
+  
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+.picto-refus{
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.title-remise{
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.full-remise{
+  position: absolute;
+  top: 49%;
+  left: 5%;
+  right: 5%;
+  z-index: 10;
+
 }

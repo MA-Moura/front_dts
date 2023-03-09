@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import jwt from "jwt-decode";
 import logo from "./img/on_shake.png";
+import qr_logo from "./img/qr_code.svg"
 import "./Login.css";
 import "./App.css";
 import axios from "axios";
@@ -23,7 +24,7 @@ function loggedIn() {
 }
 function HomePage() {
   const { id } = useParams();
-  const [msg, setMsg] = useState("Valider");
+  const [msg, setMsg] = useState("JE ME CONNECTE");
   const [isActive, setIsActive] = useState(false);
   const [pin, setPin] = useState("");
   const [error, setError] = useState("");
@@ -51,7 +52,7 @@ function HomePage() {
         setIsActive(true);
       })
       .catch((err) => {
-        setError("Mauvais PIN ! Merci de rescanner le QR");
+        setError("CODE D'ACCÈS INCORRECT");
       });
   };
   useEffect(() => {
@@ -75,11 +76,17 @@ function HomePage() {
     return (
       <div className="App">
         <header className="App-header">
-          <img className="logo" src={logo} alt="on_shake"></img>
+          <img className="qr_logo" src={qr_logo} alt="on_shake"></img>
+          <h1 className="login_title">
+            DTS
+          </h1>
+          <h2 className="login_subtitle">
+            Aimanter, monitorer, performer !
+          </h2>
           <input
             onChange={(e) => setPin(e.target.value)}
             className="pin"
-            placeholder="PIN"
+            placeholder="____"
             type="password"
             pattern="[0-9]*"
             inputMode="numeric"

@@ -26,7 +26,6 @@ function loggedIn() {
 }
 function HomePage() {
   const inputRef = useRef();
-  inputRef.click()
   const { id } = useParams();
   // const [msg, setMsg] = useState("JE ME CONNECTE");
   // const [isActive, setIsActive] = useState(false);

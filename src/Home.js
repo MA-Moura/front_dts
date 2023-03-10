@@ -30,33 +30,7 @@ function HomePage() {
   // const [isActive, setIsActive] = useState(false);
   const [pin, setPin] = useState("");
   const [error, setError] = useState("");
-  const [qrvalidation, setQrValidation] = useState("");
-  // const inputRef = useRef(null);
-  // const handleClick = () => {
-  //   axios
-  //     .post("https://api-drive-to-store.herokuapp.com/token", {
-  //       pin: pin,
-  //     })
-  //     .then(function (response) {
-  //       //get token from response
-  //       // console.log(response);
-  //       const token = response.data.access_token;
-  //       console.log(token);
-  //       // //set JWT token to local
-  //       localStorage.setItem("token", token);
-
-  //       // //set token to axios common header
-  //       setAuthToken(token);
-
-  //       //redirect user to home page
-  //       window.location.href = "/" + id;
-  //       // setMsg("Connexion...");
-  //       // setIsActive(true);
-  //     })
-  //     .catch((err) => {
-  //       setError("CODE D'ACCÈS INCORRECT");
-  //     });
-  // };
+  const [infoData, setInfoData] = useState({});
   useEffect(() => {
     if (pin.length === 4) {
       axios
@@ -90,15 +64,21 @@ function HomePage() {
       axios
         .get("https://api-drive-to-store.herokuapp.com/qr/" + id)
         .then(function (response) {
-          setQrValidation(response.data.response);
+          console.log(response.data[0]);
+          setInfoData(response.data[0]);
         });
     }
   }, [id]);
   if (loggedIn()) {
-    if (qrvalidation === "1") {
-      return <ValidPage />;
-    } else if (qrvalidation === "0") {
-      return <NotvalidPage />;
+    if (infoData.status === 0) {
+      return <ValidPage info={infoData} />;
+    } else if (
+      infoData.status === 1 ||
+      infoData.status === 2 ||
+      infoData.status === 3 ||
+      infoData.status === 4
+    ) {
+      return <NotvalidPage info={infoData} />;
     } else {
       return <LoadingPage />;
     }

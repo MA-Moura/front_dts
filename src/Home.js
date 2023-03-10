@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import jwt from "jwt-decode";
 import qr_logo from "./img/qr_code.svg";
@@ -25,6 +25,7 @@ function loggedIn() {
   return !isExpired;
 }
 function HomePage() {
+  const inputRef = useRef();
   const { id } = useParams();
   // const [msg, setMsg] = useState("JE ME CONNECTE");
   // const [isActive, setIsActive] = useState(false);
@@ -95,6 +96,7 @@ function HomePage() {
             placeholder="____"
             type="password"
             autoFocus
+            ref={inputRef}
             pattern="[0-9]*"
             inputMode="numeric"
             style={{ textAlign: "center", fontSize: "48px" }}

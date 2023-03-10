@@ -11,7 +11,7 @@ import NotvalidPage from "./notValid";
 import LoadingPage from "./Loading";
 
 function loggedIn() {
-  console.log("Check login");
+  // console.log("Check login");
   var isExpired = false;
   const token = localStorage.getItem("token");
   if (token === null) {
@@ -26,37 +26,65 @@ function loggedIn() {
 }
 function HomePage() {
   const { id } = useParams();
-  const [msg, setMsg] = useState("JE ME CONNECTE");
-  const [isActive, setIsActive] = useState(false);
+  // const [msg, setMsg] = useState("JE ME CONNECTE");
+  // const [isActive, setIsActive] = useState(false);
   const [pin, setPin] = useState("");
   const [error, setError] = useState("");
   const [qrvalidation, setQrValidation] = useState("");
+  // const inputRef = useRef(null);
+  // const handleClick = () => {
+  //   axios
+  //     .post("https://api-drive-to-store.herokuapp.com/token", {
+  //       pin: pin,
+  //     })
+  //     .then(function (response) {
+  //       //get token from response
+  //       // console.log(response);
+  //       const token = response.data.access_token;
+  //       console.log(token);
+  //       // //set JWT token to local
+  //       localStorage.setItem("token", token);
 
-  const handleClick = () => {
-    axios
-      .post("https://api-drive-to-store.herokuapp.com/token", {
-        pin: pin,
-      })
-      .then(function (response) {
-        //get token from response
-        // console.log(response);
-        const token = response.data.access_token;
-        console.log(token);
-        // //set JWT token to local
-        localStorage.setItem("token", token);
+  //       // //set token to axios common header
+  //       setAuthToken(token);
 
-        // //set token to axios common header
-        setAuthToken(token);
+  //       //redirect user to home page
+  //       window.location.href = "/" + id;
+  //       // setMsg("Connexion...");
+  //       // setIsActive(true);
+  //     })
+  //     .catch((err) => {
+  //       setError("CODE D'ACCÈS INCORRECT");
+  //     });
+  // };
+  useEffect(() => {
+    if (pin.length === 4) {
+      axios
+        .post("https://api-drive-to-store.herokuapp.com/token", {
+          pin: pin,
+        })
+        .then(function (response) {
+          //get token from response
+          // console.log(response);
+          const token = response.data.access_token;
+          console.log(token);
+          // //set JWT token to local
+          localStorage.setItem("token", token);
 
-        //redirect user to home page
-        window.location.href = "/" + id;
-        setMsg("Connexion...");
-        setIsActive(true);
-      })
-      .catch((err) => {
-        setError("CODE D'ACCÈS INCORRECT");
-      });
-  };
+          // //set token to axios common header
+          setAuthToken(token);
+
+          //redirect user to home page
+          window.location.href = "/" + id;
+          // setMsg("Connexion...");
+          // setIsActive(true);
+        })
+        .catch((err) => {
+          setError("CODE D'ACCÈS INCORRECT");
+        });
+    }
+  }, [pin, id]);
+
   useEffect(() => {
     if (loggedIn()) {
       axios
@@ -86,6 +114,7 @@ function HomePage() {
             className="pin"
             placeholder="____"
             type="password"
+            autoFocus
             pattern="[0-9]*"
             inputMode="numeric"
             style={{ textAlign: "center", fontSize: "48px" }}
@@ -93,7 +122,7 @@ function HomePage() {
             maxLength={4}
           />
           <div className="container2">
-            <button
+            {/* <button
               className={isActive ? "active" : ""}
               id="btn"
               onClick={handleClick}
@@ -104,7 +133,7 @@ function HomePage() {
                   <path fill="transparent" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                 </svg>
               </div>
-            </button>
+            </button> */}
             <h2 style={{ color: "red" }}>{error}</h2>
           </div>
         </header>

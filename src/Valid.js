@@ -1,7 +1,7 @@
 import React from "react";
 // import qr_logo from "./img/qr_code.svg";
 import qr_ok from "./img/ok.svg";
-import logo_fleche from "./img/fleche_basse.svg";
+// import logo_fleche from "./img/fleche_basse.svg";
 
 function ValidPage(props) {
   return (
@@ -31,14 +31,14 @@ function ValidPage(props) {
       </div>
 
       <div className="validate-bottom-page">
-        <img className="fleche-logo" src={logo_fleche} alt="on_shake"></img>
-        <div className="has-paid">
+        {/* <img className="fleche-logo" src={logo_fleche} alt="on_shake"></img> */}
+        {/* <div className="has-paid">
           <p className="has-paid-title">EST-IL PASSÉ EN CAISSE ?</p>
           <div className="has-paid-buttons">
-            <button className="has-paid-yes">OUI</button>
-            <button className="has-paid-no">NON</button>
-          </div>
-        </div>
+            <button className="has-paid-yes" type="button">OUI</button>
+            <button className="has-paid-no" type="button">NON</button>
+          </div> */}
+        {/* </div> */}
       </div>
     </div>
   );

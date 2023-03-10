@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import jwt from "jwt-decode";
-import logo from "./img/on_shake.png";
-import qr_logo from "./img/qr_code.svg"
+import qr_logo from "./img/qr_code.svg";
 import "./Login.css";
 import "./App.css";
 import axios from "axios";
 import { setAuthToken } from "./App";
-import { queryByPlaceholderText } from "@testing-library/react";
+import ValidPage from "./Valid";
+import NotvalidPage from "./notValid";
+import LoadingPage from "./Loading";
+
 function loggedIn() {
   console.log("Check login");
   var isExpired = false;
@@ -56,33 +58,27 @@ function HomePage() {
       });
   };
   useEffect(() => {
-    console.log("ééééééééééééééé");
-    console.log(id);
     if (loggedIn()) {
       axios.get("http://localhost:8000/qr/" + id).then(function (response) {
         setQrValidation(response.data.response);
       });
     }
-  }, []);
+  }, [id]);
   if (loggedIn()) {
-    if (qrvalidation == "1") {
-      return <div> Le code est bon- {qrvalidation} </div>;
-    } else if (qrvalidation == "0") {
-      return <div> Le code n'est pas bon- {qrvalidation} </div>;
+    if (qrvalidation === "1") {
+      return <ValidPage />;
+    } else if (qrvalidation === "0") {
+      return <NotvalidPage />;
     } else {
-      return <div> Loading... </div>;
+      return <LoadingPage />;
     }
   } else {
     return (
       <div className="App">
         <header className="App-header">
           <img className="qr_logo" src={qr_logo} alt="on_shake"></img>
-          <h1 className="login_title">
-            DTS
-          </h1>
-          <h2 className="login_subtitle">
-            Aimanter, monitorer, performer !
-          </h2>
+          <h1 className="login_title">DTS</h1>
+          <h2 className="login_subtitle">Aimanter, monitorer, performer !</h2>
           <input
             onChange={(e) => setPin(e.target.value)}
             className="pin"

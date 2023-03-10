@@ -34,7 +34,7 @@ function HomePage() {
 
   const handleClick = () => {
     axios
-      .post("http://localhost:8000/token", {
+      .post("https://api-drive-to-store.herokuapp.com/token", {
         pin: pin,
       })
       .then(function (response) {
@@ -59,9 +59,11 @@ function HomePage() {
   };
   useEffect(() => {
     if (loggedIn()) {
-      axios.get("http://localhost:8000/qr/" + id).then(function (response) {
-        setQrValidation(response.data.response);
-      });
+      axios
+        .get("https://api-drive-to-store.herokuapp.com/qr/" + id)
+        .then(function (response) {
+          setQrValidation(response.data.response);
+        });
     }
   }, [id]);
   if (loggedIn()) {
